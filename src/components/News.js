@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 
 export class News extends Component {
+    // Array of newsAPI
     articles = [{
         "source": {
             "id": null,
@@ -67,6 +68,8 @@ export class News extends Component {
         "publishedAt": "2023-01-19T00:46:17Z",
         "content": "Image Credit: Apple\r\nAppleInsider may earn an affiliate commission on purchases made through links on our site.\r\nApple has announced premiere dates for additional Apple TV+ offerings available this s… [+2236 chars]"
     }]
+
+    // Made constructor for getting the articles
     constructor() {
         super();
         this.state = {
@@ -81,16 +84,18 @@ export class News extends Component {
             <div className='container my-4'>
                 <h2>Top headlines</h2>
                 <div className="row">
+                    {/* map function is use for looping */}
+                    {/* It is print the data and works like for loop */}
+                    {/* It must take return value */}
+                    {/* slice is use for how many characters you want to show in your website (use for structure style)*/}
 
-                    <div className="col-md-4">
-                        <NewsItem title="myTitle" description="myDesc" imageUrl="https://cdn.mos.cms.futurecdn.net/c3bTdgetMPKi6PMM2CdtLU-1200-80.jpg"s />
-                    </div>
-                    <div className="col-md-4">
-                        <NewsItem title="myTitle" description="myDesc" />
-                    </div>
-                    <div className="col-md-4">
-                        <NewsItem title="myTitle" description="myDesc" />
-                    </div>
+                    {this.state.articles.map((element) => {
+                        return <div className="col-md-4" key={element.url} >
+                            {/* Pass the title, description, images, newsurl from the our json file which is store in element array. */}
+                            <NewsItem title={element.title.slice(0, 40)} description={element.description.slice(0, 88)} imageUrl={element.urlToImage} newsUrl={element.url} />
+                        </div>
+                    })}
+
 
                 </div>
             </div>
