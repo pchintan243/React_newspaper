@@ -91,7 +91,7 @@ export class News extends Component {
                             {/* Pass the title, description, images, newsurl from the our json file which is store in element array. */}
                             {/* If title is null at that time empty string will be execute */}
                             {/* If description is null at that time empty string will be execute */}
-                            <NewsItem title={element.title ? element.title.slice(0, 40) : ""} description={element.description ? element.description.slice(0, 88) : ""} imageUrl={element.urlToImage} newsUrl={element.url} />
+                            <NewsItem title={element.title ? element.title.slice(0, 40) : ""} description={element.description ? element.description.slice(0, 88) : ""} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name}/>
                         </div>
                     })}
 
