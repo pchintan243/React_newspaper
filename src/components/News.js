@@ -17,6 +17,11 @@ export class News extends Component {
         category: PropTypes.string
     }
 
+    // Capitalize the categories
+    capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     // Made constructor for getting the articles
     constructor(props) {
         super(props);
@@ -25,6 +30,9 @@ export class News extends Component {
             loading: false,
             page: 1
         }
+
+        // Changing the title based on news categories as well capital the first letter of category
+        document.title = `${this.capitalizeFirstLetter(this.props.category)} - Taaza Khabar`;
     }
 
     // Follows DRY principle
@@ -110,7 +118,7 @@ export class News extends Component {
     render() {
         return (
             <div className='container my-4'>
-                <h2 className='text-center'>Top headlines</h2>
+                <h2 className='text-center'>Top headlines on {this.capitalizeFirstLetter(this.props.category)} Headlines</h2>
                 {this.state.loading && <Spinner />}
                 <div className="row">
                     {/* map function is use for looping */}
