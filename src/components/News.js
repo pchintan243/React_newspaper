@@ -41,7 +41,9 @@ export class News extends Component {
     async updateNews() {
         // Set the loading line initially
         this.props.setProgress(10);
-        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b856a7b7857d4cb4a80d83ac76be3e4b&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+        // apikey hide and get to env.local file using props
+        const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apikey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+        this.setState({ loading: true });
         // Set the logic for loading
         // Loading gif will occur up to page Load
         this.setState({ loading: true });
@@ -64,7 +66,7 @@ export class News extends Component {
 
     // It will run after render
     async componentDidMount() {
-        // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b856a7b7857d4cb4a80d83ac76be3e4b&page=1&pageSize=${this.props.pageSize}`;
+        // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apikey=${this.props.apikey}&page=1&pageSize=${this.props.pageSize}`;
         // // Set the logic for loading
         // // Loading gif will occur up to page Load
         // this.setState({ loading: true });
@@ -82,7 +84,7 @@ export class News extends Component {
     // Use for go previous page
     // By default previous button is disabled because no previous pages are there to move previous page
     handlePrevClick = async () => {
-        // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b856a7b7857d4cb4a80d83ac76be3e4b&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
+        // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apikey=${this.props.apikey}&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
         // this.setState({ loading: true });
         // let data = await fetch(url);
         // let parsedData = await data.json();
@@ -105,7 +107,7 @@ export class News extends Component {
     handleNextClick = async () => {
         // if (!(this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize))) {
 
-        //     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b856a7b7857d4cb4a80d83ac76be3e4b&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+        //     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apikey=${this.props.apikey}&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
         //     this.setState({ loading: true });
         //     let data = await fetch(url);
         //     let parsedData = await data.json();
