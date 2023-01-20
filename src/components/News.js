@@ -12,7 +12,6 @@ const News = (props) => {
     const [page, setPage] = useState(1)
     const [totalResults, setTotalResults] = useState()
 
-    // document.title = `${capitalizeFirstLetter(props.category)} - Taaza Khabar`;
 
     // Capitalize the categories
     const capitalizeFirstLetter = (string) => {
@@ -46,6 +45,7 @@ const News = (props) => {
     }
 
     useEffect(() => {
+    document.title = `${capitalizeFirstLetter(props.category)} - Taaza Khabar`;
         updateNews();
         // eslint-disable-next-line
     }, [])
