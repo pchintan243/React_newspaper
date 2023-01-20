@@ -3,6 +3,7 @@ import NewsItem from './NewsItem'
 import Spinner from './Spinner';
 import PropTypes from 'prop-types'
 
+// Upto 34 video logic are implemented in this file 
 export class News extends Component {
 
     static defaultProps = {
@@ -118,14 +119,14 @@ export class News extends Component {
     render() {
         return (
             <div className='container my-4'>
-                <h2 className='text-center'>Top headlines on {this.capitalizeFirstLetter(this.props.category)} Headlines</h2>
+                <h2 className='text-center'>Top news on {this.capitalizeFirstLetter(this.props.category)} Headlines</h2>
                 {this.state.loading && <Spinner />}
                 <div className="row">
                     {/* map function is use for looping */}
                     {/* It is print the data and works like for loop */}
                     {/* It must take return value */}
                     {/* slice is use for how many characters you want to show in your website (use for structure style)*/}
-                    {/* loading is use for when you click on button at that time first loading will start to execure after that content will be display */}
+                    {/* loading is use for when you click on button at that time first loading will start to execute after that content will be display */}
                     {!this.state.loading && this.state.articles.map((element) => {
                         return <div className="col-md-4" key={element.url} >
                             {/* Pass the title, description, images, newsurl from the our json file which is store in element array. */}
