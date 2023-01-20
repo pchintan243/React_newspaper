@@ -2,6 +2,7 @@ import './App.css';
 import React, { Component } from 'react'
 import Navbar from './components/Navbar';
 import News from './components/News';
+import News2 from './components/News2';
 import {
   BrowserRouter as Router,
   Routes,
@@ -25,7 +26,9 @@ export default class App extends Component {
             <Route exact path="/health" element={<News key="health" pageSize={this.pageSize} country="in" category="health" />} />
             <Route exact path="/science" element={<News key="science" pageSize={this.pageSize} country="in" category="science" />} />
             <Route exact path="/sport" element={<News key="sport" pageSize={this.pageSize} country="in" category="sport" />} />
-            <Route exact path="/technology" element={<News key="technology" pageSize={this.pageSize} country="in" category="technology" />} />
+
+            {/* After 34 video i will make one another component file news2.js */}
+            <Route exact path="/technology" element={<News2 key="technology" pageSize={this.pageSize} country="in" category="technology" />} />
           </Routes>
         </Router>
       </div>
