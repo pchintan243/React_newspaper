@@ -12,31 +12,32 @@ const News = (props) => {
     const [page, setPage] = useState(1)
     const [totalResults, setTotalResults] = useState()
 
-
     // Capitalize the categories
     const capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-
     // Follows DRY principle
     const updateNews = async () => {
-        // Set the loading line initially
+        // Set the loading line By default
         props.setProgress(10);
         // apikey hide and get to env.local file using props
         const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apikey}&page=${page}&pageSize=${props.pageSize}`;
+
         // Set the logic for loading
-        // Loading gif will occur up to page Load
+        // Loading gif will occur upto page Load
         let data = await fetch(url);
         setLoading(true);
-        // Set the loading line upto fetch data
+        
+        // Set the loading line till to fetch data
         props.setProgress(40);
         let parsedData = await data.json();
-        // Set the loading line upto parsed data
-        props.setProgress(70);
 
+        // Set the loading line till to parsed data
+        props.setProgress(70);
         setArticles(parsedData.articles)
         setTotalResults(parsedData.totalResults)
+
         // loading false after all data loaded succesfully
         setLoading(false)
 
@@ -45,7 +46,8 @@ const News = (props) => {
     }
 
     useEffect(() => {
-    document.title = `${capitalizeFirstLetter(props.category)} - Taaza Khabar`;
+        // Changing the title based on news categories as well capital the first letter of category
+        document.title = `${capitalizeFirstLetter(props.category)} - Taaza Khabar`;
         updateNews();
         // eslint-disable-next-line
     }, [])
@@ -53,17 +55,6 @@ const News = (props) => {
     // Use for go previous page
     // By default previous button is disabled because no previous pages are there to move previous page
     const handlePrevClick = async () => {
-        // let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apikey=${props.apikey}&page=${page - 1}&pageSize=${props.pageSize}`;
-        // this.setState({ loading: true });
-        // let data = await fetch(url);
-        // let parsedData = await data.json();
-        // // Page will be decrement by 1 if you click on previous button
-        // this.setState({
-        //     page: page - 1,
-        //     articles: parsedData.articles,
-        //     loading: false
-        // })
-
         // Page will be decrement by 1 if you click on previous button
         setPage(page - 1)
         updateNews();
@@ -72,21 +63,6 @@ const News = (props) => {
     // Use for go Next page
     // When total number of results will be finish at that time you can't able to click the next button
     const handleNextClick = async () => {
-        // if (!(page + 1 > Math.ceil(totalResults / props.pageSize))) {
-
-        //     let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apikey=${props.apikey}&page=${page + 1}&pageSize=${props.pageSize}`;
-        //     this.setState({ loading: true });
-        //     let data = await fetch(url);
-        //     let parsedData = await data.json();
-        //     // Page will be increment by 1 if you click on next button
-        //     this.setState({
-        //         page: page + 1,
-        //         articles: parsedData.articles,
-        //         loading: false
-        //     })
-        // }
-
-
         // Page will be increment by 1 if you click on next button
         setPage(page + 1)
         updateNews();
@@ -104,13 +80,12 @@ const News = (props) => {
                 {/* loading is use for when you click on button at that time first loading will start to execute after that content will be display */}
                 {!loading && articles.map((element) => {
                     return <div className="col-md-4" key={element.url} >
-                        {/* Pass the title, description, images, newsurl from the our json file which is store in element array. */}
+                        {/* Pass the title, description, images, newsurl, authorname, source, publishing date from the our json file which is store in element array. */}
                         {/* If title is null at that time empty string will be execute */}
                         {/* If description is null at that time empty string will be execute */}
                         <NewsItem title={element.title ? element.title.slice(0, 40) : ""} description={element.description ? element.description.slice(0, 88) : ""} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
                     </div>
                 })}
-
 
             </div>
             <div className="container d-flex justify-content-between">

@@ -7,7 +7,6 @@ const NewsItem = (props) => {
   return (
     <div className='my-3'>
       <div className="card" style={{ width: "18rem" }}>
-
         <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
           {source}
           <span className="visually-hidden">unread messages</span>

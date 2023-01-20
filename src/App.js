@@ -14,9 +14,9 @@ import {
 const App = () => {
 
   const pageSize = 6;
-  // Getting apikey using env.local files 
+  // Getting apikey from env.local files 
   // When you host the website at that time it is useful to hide something which is very important
-  // ALready added .env.local file in gitignore
+  // Already added .env.local file in gitignore
   const apikey = process.env.REACT_APP_NEWS_API
   const [progress, setProgress] = useState(0)
 
