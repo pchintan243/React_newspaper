@@ -4,6 +4,7 @@ import Spinner from './Spinner';
 import PropTypes from 'prop-types'
 
 // Upto 34 video logic are implemented in this file 
+// 35 video loading line 
 export class News extends Component {
 
     static defaultProps = {
@@ -38,12 +39,18 @@ export class News extends Component {
 
     // Follows DRY principle
     async updateNews() {
+        // Set the loading line initially
+        this.props.setProgress(10);
         const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b856a7b7857d4cb4a80d83ac76be3e4b&page=${this.state.page}&pageSize=${this.props.pageSize}`;
         // Set the logic for loading
         // Loading gif will occur up to page Load
         this.setState({ loading: true });
         let data = await fetch(url);
+        // Set the loading line upto fetch data
+        this.props.setProgress(40);
         let parsedData = await data.json();
+        // Set the loading line upto parsed data
+        this.props.setProgress(70);
 
         this.setState({
             articles: parsedData.articles,
@@ -51,6 +58,8 @@ export class News extends Component {
             // loading false after all data loaded succesfully
             loading: false
         })
+        // When page will be loaded loading line will be finish
+        this.props.setProgress(100);
     }
 
     // It will run after render
